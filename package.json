@@ -1,0 +1,26 @@
+{
+  "name": "jTemplateLoader",
+  "version": "0.0.1",
+  "homepage": "http://www.cnblogs.com/xiashan17",
+  "repository": "xiashan17/jTemplateLoader",
+  "author": "rain.xia <xiashan17@163.com> (http://blog.csdn.net/xiashan17/)",
+  "scripts": {
+    "startServer": "node www",
+    "buildScript": "gulp default"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "hbs": "~4.0.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0",
+    "stylus": "0.54.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mockjs": "^1.0.1-beta3"
+  },
+  "license": "MIT"
+}
