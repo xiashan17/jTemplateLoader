@@ -1,104 +1,183 @@
+(function (global, factory) {
+    "use strict";
 
-(function( window) {
-    var jTemplateLoader = function(op){
+    if (typeof module === "object" && typeof module.exports === "object") {
+        module.exports = global.document ?
+            factory(global, true) :
+            function (w) {
+                if (!w.document) {
+                    throw new Error("jTemplateLoader requires a window with a document");
+                }
+                return factory(w);
+            };
+    } else {
+        factory(global);
+    }
+})(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
+    var jTemplateLoader = function (op) {
         return new jTemplateLoader.prototype.init(op);
     };
-    jTemplateLoader.prototype={
+    jTemplateLoader.fn = jTemplateLoader.prototype = {
 
         constructor: jTemplateLoader,
-        setOption:function(op){
-            this.option =op;
+        setOption: function (op) {
+            var odj = this.option;
+            for (var key in op){
+                odj[key] = op[key];
+            }
         },
-        cacheProperty:'jstemplate',
-
-        getEngine:function(){
-            if(window.Handlebars){
+        getEngine: function () {
+            if (window.Handlebars) {
                 return 'Handlebars';
-            }else if(window.doT){
+            } else if (window.doT) {
                 return 'doT';
-            }else if(window.jQuery && window.jQuery.tmpl){
+            } else if (window.jQuery && window.jQuery.tmpl) {
                 return 'jQuery.tmpl';
-            }else{
+            } else {
                 return null;
             }
         },
-        tmplToHtml:function(tmpl,source){
+        tmplToHtml: function (tmpl, source) {
             var engine = this.engine;
             var html = '';
-            switch(engine)
-            {
+            switch (engine) {
                 case'Handlebars':
-                    html=window.Handlebars.compile(tmpl)(source);
+                    html = window.Handlebars.compile(tmpl)(source);
                     break;
                 case 'doT':
-                    html=window.doT.template(tmpl,undefined, source);
+                    html = window.doT.template(tmpl, undefined, source);
                     break;
                 case 'jQuery.tmpl':
-                    html=window.jQuery.tmpl(tmpl,source);
+                    html = window.jQuery.tmpl(tmpl, source);
                     break;
                 default:
-                    html=window.Handlebars.compile(tmpl)(source);
+                    html = window.Handlebars.compile(tmpl)(source);
             }
             return html;
         },
-        getTmplLoader:function(){
-            if(window.jQuery){
+        getTmplLoader: function () {
+            if (window.jQuery) {
                 return 'jQuery';
-            }else if(window.fetch){
+            } else if (window.fetch) {
                 return 'fetch';
-            }else{
+            } else {
                 return null;
             }
         },
-        init:function(op){
-            if(op){
-                this.setOption(op);
+        init: function (op) {
+            this.option = {cacheProperty: 'jstemplate', loadTimer: 5000};
+            this.setOption(op);
+            var cacheProperty = this.option.cacheProperty;
+            if (!window[cacheProperty]) {
+                window[cacheProperty] = {};
             }
             var engine = this.getEngine();
-            if(!engine){
-                console.log("jTemplateLoader need templateEngine");
+            if (!engine) {
+                throw Error("jTemplateLoader need templateEngine");
                 return;
             }
             var loader = this.getTmplLoader();
-            if(!loader){
-                console.log("jTemplateLoader need AJAX loader");
+            if (!loader) {
+                throw Error("jTemplateLoader need AJAX loader");
                 return;
             }
-            this.loader =loader;
-            this.engine =engine;
-        },
-        cacheTmpl:function(url,tpl){
-            var cacheProperty =this.cacheProperty;
-            if(!window[cacheProperty]){
-                window[cacheProperty]={};
+            this.loader = loader;
+            this.engine = engine;
+            if(this.option.templates){
+                this.loadAllTemplate();
             }
+        },
+        loadAllTemplate:function(){
+            var templates =this.option.templates;
+            for(var i = 0,len=templates.length;i<len;i++){
+                this.loaderTmpl(templates[i]);
+            }
+        },
+        cacheTmpl: function (url, tpl) {
+            var cacheProperty = this.option.cacheProperty;
             var cacheTemplate = window[cacheProperty];
             cacheTemplate[url] = tpl;
-            //cacheTemplate[encodeURIComponent(url)] = tpl;
         },
-        loaderTmpl:function(url,callback,source){
+        loaderTmpl: function (url, source ,callback) {
             var _this = this;
             var loader = this.loader;
-            if(loader=='jQuery'){
-                window.jQuery.get(url,function(response,status,xhr){
-                    _this.cacheTmpl(url,response);
-                    callback.call(_this,_this.tmplToHtml(response,source));
-                },"text");
+            if (loader == 'jQuery') {
+                window.jQuery.get(url, function (response, status, xhr) {
+                    _this.cacheTmpl(url, response);
+                    if(source){
+                        callback.call(_this, _this.tmplToHtml(response, source));
+                    }
+                }, "text");
             }
 
         },
-        html:function(url,source,callback){
-            var _this = this;
-            var cacheProperty =this.cacheProperty;
-            if(window[cacheProperty] && window[cacheProperty][url]){
-                return callback.call(_this,_this.tmplToHtml(window[cacheProperty][url],source));
+        getCacheTmpl: function (url) {
+            var cacheProperty = this.option.cacheProperty;
+            if (window[cacheProperty] && window[cacheProperty][url]) {
+                return window[cacheProperty][url];
             }
-            _this.loaderTmpl(url,callback,source);
+            return '';
+        },
+        load: function (url, source, callback) {
+            var _this = this;
+            var cacheProperty = this.option.cacheProperty;
+            if (this.getCacheTmpl(url) != '') {
+                return callback.call(_this, _this.tmplToHtml(window[cacheProperty][url], source));
+            } else {
+                _this.loaderTmpl(url, source ,callback);
+            }
+        },
+        html: function (url, source) {
+            var tmp = this.getCacheTmpl(url);
+            if (tmp == '') {
+                return '';
+            }
+            return this.tmplToHtml(tmp, source)
+        },
+        checkCache: function (callback) {
+            var _this = this;
+            var cacheProperty = this.option.cacheProperty;
+            var templates = this.option.templates;
+            var loadTimer = this.option.loadTimer;
+            var t = 500;
+            var loadTimes = 0;
+            if (templates) {
+                _this.timer = setInterval(function () {
+                    var isAllCache = true;
+                    for (var i = 0, len = templates.length; i < len; i++) {
+                        if (!window[cacheProperty][templates[i]]) {
+                            isAllCache = false;
+                        }
+                    }
+                    if (isAllCache) {
+                        clearInterval(_this.timer);
+                        callback();
+                    }
+                    loadTimes += t;
+                    if (t > loadTimer) {
+                        clearInterval(_this.timer);
+                        throw Error('template load timeout');
+                    }
+                }, t);
+            }else{
+                throw Error('template url is wrong');
+            }
+        },
+        ready: function (callback) {
+            this.checkCache(callback);
         }
     };
     jTemplateLoader.prototype.init.prototype = jTemplateLoader.prototype;
-    if ( typeof window.jTemplateLoader !== "object") {
-        window.jTemplateLoader = jTemplateLoader();
+
+    if (typeof define === "function" && define.amd) {
+        define("jTemplateLoader", [], function () {
+            return jTemplateLoader;
+        });
     }
-    return window.jTemplateLoader;
-}(typeof window !== "undefined" ? window : this));
+
+    if (!noGlobal) {
+        window.jTemplateLoader = window.jTem = jTemplateLoader;
+    }
+    return jTemplateLoader;
+
+});

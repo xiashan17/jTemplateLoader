@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <title>user handlebars jquery</title>
     <link href="/stylesheets/index.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.js"></script>
     <script type="text/javascript" src="/jTemplateLoader.min.js"></script>
-
 </head>
 <body>
 <section class="todoapp">
@@ -26,14 +25,14 @@
     $(function(){
         var list = $('.todo-list');
         var data ={comment:'why developer hate product managers!',author:{name:"john"}};
-        jTemplateLoader.html('/template/commentList.tpl',data,function(content){
+        jTemplateLoader().load('/handlebarsTemplate/commentList.tpl',data,function(content){
             list.append(content);
         });
         $.get("/ajax/commentlist",function(result){
             if(result.data){
                 var r = result.data
                 for(var i = 0,len= r.length;i<len;i++){
-                    jTemplateLoader.html('/template/commentList.tpl',r[i],function(content){
+                    jTemplateLoader().load('/handlebarsTemplate/commentList.tpl',r[i],function(content){
                         list.append(content);
                     });
                 }

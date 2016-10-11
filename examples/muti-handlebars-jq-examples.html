@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>user handlebars jquery</title>
+    <link href="/stylesheets/main_prefixed.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.js"></script>
+    <script type="text/javascript" src="/jTemplateLoader.min.js"></script>
+
+</head>
+<body>
+<section class="sitewidth">
+    <h2><b>TIOBE Index for October 2016</b></h2>
+
+    <div id="table1">
+    </div>
+    <h2>Very Long Term History</h2>
+
+    <div id="table2">
+    </div>
+    <h2>Programming Language Hall of Fame</h2>
+
+    <div id="table3">
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(function () {
+        var tmplDatas={
+            templates:["/handlebarsTemplate/ranking.tpl","/handlebarsTemplate/teamHistory.tpl","/handlebarsTemplate/hallOfFame.tpl"]
+        };
+        jTemplateLoader().setOption(tmplDatas);
+        jTemplateLoader(tmplDatas).ready(function(){
+            $.get("/ajax/ranking", function (result) {
+                if (result.data) {
+                    $("#table1").append(jTemplateLoader().html('/handlebarsTemplate/ranking.tpl',result));
+                }
+            });
+
+            $.get("/ajax/teamHistory", function (result) {
+                if (result.data) {
+                    $("#table2").append(jTemplateLoader().html('/handlebarsTemplate/teamHistory.tpl',result));
+                }
+            });
+
+            $.get("/ajax/hallOfFame", function (result) {
+                if (result.data) {
+                    $("#table3").append(jTemplateLoader().html('/handlebarsTemplate/hallOfFame.tpl',result));
+                }
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>

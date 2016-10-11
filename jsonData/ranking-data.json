@@ -1,0 +1,162 @@
+[
+  {
+    "oct2016": "1",
+    "oct2015": "1",
+    "change": "",
+    "programminglanguage": "Java",
+    "ratings": "18.799%",
+    "change5": "-0.74%"
+  },
+  {
+    "oct2016": "2",
+    "oct2015": "2",
+    "change": "",
+    "programminglanguage": "C",
+    "ratings": "9.835%",
+    "change5": "-6.35%"
+  },
+  {
+    "oct2016": "3",
+    "oct2015": "3",
+    "change": "",
+    "programminglanguage": "C++",
+    "ratings": "5.797%",
+    "change5": "+0.05%"
+  },
+  {
+    "oct2016": "4",
+    "oct2015": "4",
+    "change": "",
+    "programminglanguage": "C#",
+    "ratings": "4.367%",
+    "change5": "-0.46%"
+  },
+  {
+    "oct2016": "5",
+    "oct2015": "5",
+    "change": "",
+    "programminglanguage": "Python",
+    "ratings": "3.775%",
+    "change5": "-0.74%"
+  },
+  {
+    "oct2016": "6",
+    "oct2015": "8",
+    "change": "<img src=\"/images/up.png\" alt=\"change\">",
+    "programminglanguage": "JavaScript",
+    "ratings": "2.751%",
+    "change5": "+0.46%"
+  },
+  {
+    "oct2016": "7",
+    "oct2015": "6",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "PHP",
+    "ratings": "2.741%",
+    "change5": "+0.18%"
+  },
+  {
+    "oct2016": "8",
+    "oct2015": "7",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "Visual Basic .NET",
+    "ratings": "2.660%",
+    "change5": "+0.20%"
+  },
+  {
+    "oct2016": "9",
+    "oct2015": "9",
+    "change": "",
+    "programminglanguage": "Perl",
+    "ratings": "2.495%",
+    "change5": "+0.25%"
+  },
+  {
+    "oct2016": "10",
+    "oct2015": "14",
+    "change": "<img src=\"/images/upup.png\" alt=\"change\">",
+    "programminglanguage": "Objective-C",
+    "ratings": "2.263%",
+    "change5": "+0.84%"
+  },
+  {
+    "oct2016": "11",
+    "oct2015": "12",
+    "change": "<img src=\"/images/up.png\" alt=\"change\">",
+    "programminglanguage": "Assembly language",
+    "ratings": "2.232%",
+    "change5": "+0.66%"
+  },
+  {
+    "oct2016": "12",
+    "oct2015": "15",
+    "change": "<img src=\"/images/up.png\" alt=\"change\">",
+    "programminglanguage": "Swift",
+    "ratings": "2.004%",
+    "change5": "+0.73%"
+  },
+  {
+    "oct2016": "13",
+    "oct2015": "10",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "Ruby",
+    "ratings": "2.001%",
+    "change5": "+0.18%"
+  },
+  {
+    "oct2016": "14",
+    "oct2015": "13",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "Visual Basic",
+    "ratings": "1.987%",
+    "change5": "+0.47%"
+  },
+  {
+    "oct2016": "15",
+    "oct2015": "11",
+    "change": "<img src=\"/images/downdown.png\" alt=\"change\">",
+    "programminglanguage": "Delphi/Object Pascal",
+    "ratings": "1.875%",
+    "change5": "+0.24%"
+  },
+  {
+    "oct2016": "16",
+    "oct2015": "65",
+    "change": "<img src=\"/images/upup.png\" alt=\"change\">",
+    "programminglanguage": "Go",
+    "ratings": "1.809%",
+    "change5": "+1.67%"
+  },
+  {
+    "oct2016": "17",
+    "oct2015": "32",
+    "change": "<img src=\"/images/upup.png\" alt=\"change\">",
+    "programminglanguage": "Groovy",
+    "ratings": "1.769%",
+    "change5": "+1.19%"
+  },
+  {
+    "oct2016": "18",
+    "oct2015": "20",
+    "change": "<img src=\"/images/up.png\" alt=\"change\">",
+    "programminglanguage": "R",
+    "ratings": "1.741%",
+    "change5": "+0.75%"
+  },
+  {
+    "oct2016": "19",
+    "oct2015": "17",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "MATLAB",
+    "ratings": "1.619%",
+    "change5": "+0.46%"
+  },
+  {
+    "oct2016": "20",
+    "oct2015": "18",
+    "change": "<img src=\"/images/down.png\" alt=\"change\">",
+    "programminglanguage": "PL/SQL",
+    "ratings": "1.531%",
+    "change5": "+0.46%"
+  }
+]

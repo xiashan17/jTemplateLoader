@@ -1,0 +1,54 @@
+[
+  {
+    "year": "2015",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Java"
+  },
+  {
+    "year": "2014",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> JavaScript"
+  },
+  {
+    "year": "2013",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Transact-SQL"
+  },
+  {
+    "year": "2012",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Objective-C"
+  },
+  {
+    "year": "2011",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Objective-C"
+  },
+  {
+    "year": "2010",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Python"
+  },
+  {
+    "year": "2009",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Go"
+  },
+  {
+    "year": "2008",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> C"
+  },
+  {
+    "year": "2007",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Python"
+  },
+  {
+    "year": "2006",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Ruby"
+  },
+  {
+    "year": "2005",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> Java"
+  },
+  {
+    "year": "2004",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> PHP"
+  },
+  {
+    "year": "2003",
+    "winner": "<img src=\"/images/medal.png\" alt=\"medal\"> C++"
+  }
+]
