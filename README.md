@@ -8,7 +8,7 @@ load template with ajax,just use script tag include,no use  amd or cmd
 
 
 Usage
-=====
+====================
 under  brower 
 <script type="text/javascript" src="/jTemplateLoader.min.js"></script>
 1.load just one template 
@@ -44,8 +44,13 @@ under  brower
         });
 
  
+examples 
+====================
+npm install
+npm run startServer
+
 
 License
-=======
+====================
 
 MIT
